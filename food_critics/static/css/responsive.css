@@ -1,0 +1,495 @@
+html, body {
+    margin: 0; padding: 0;
+    font-family: gineso-condensed,sans-serif;
+}
+
+div#title-box h1 {
+    display: block;
+    font-size: xx-large;
+    text-align: center;
+}
+
+div#title-box h2 {
+    display: none;
+}
+
+div#title-box img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+ul#primary-nav{
+    padding: 0;
+    list-style-type: none;
+}
+
+form#login-box input[type="text"],
+form#login-box input[type="password"] {
+    display: block;
+    margin: 0 0 5px 0;
+}
+
+ul#primary-nav li a {
+    display: block;
+    text-decoration: none;
+    padding : 10px 15px;
+    background-color: maroon;
+    color: #fff;
+    text-align: center;
+}
+
+ul#primary-nav li a.selected {
+    background-color: #000;
+    font-weight: bold;
+}
+
+div.blog-post div.blog-picture img {
+    display: none;
+}
+
+div#side-bar a img {
+    display: none;
+}
+
+ul#side-tabs {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul#side-tabs li {
+    float: left;
+}
+
+ul#side-tabs li a {
+    display: block;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #999;
+    color: #000;
+}
+
+h2#section-heading {
+    clear: left;
+}
+
+ul#side-tabs li a.selected {
+    background-color: #ccc;
+    font-weight: bold;
+}
+
+div.blog-post {
+    border-bottom: 1px solid #ccc;
+}
+
+div.blog-post div.blog-points {
+    float: left;
+    width: 50px;
+    font-size: x-large;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+div.blog-post p.blog-description{
+    display: none;
+}
+
+div.blog-post p.blog-byline {
+    margin-left: 50px;
+    font-size: smaller;
+    line-height: 1.7;
+}
+
+div.blog-post p.blog-byline a.blog-comments {
+    text-decoration: none;
+    padding : 5px 5px;
+    border : 1px solid black;
+    font-size: larger;
+}
+
+div.blog-post p.blog-byline a.blog-byline-comma {
+    display: none;
+}
+
+div#footer {
+    clear: left;
+    text-align: center;
+}
+
+div#profile {
+    width: 85%;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+div#row {
+    width: auto;
+}
+
+div#profile img {
+    max-width: 50%;
+    max-height: 50%;
+    border: 1px solid #ccc;
+    margin: 5% 5% 5% 5%;
+}
+
+div#profile-picture {
+    flex:100%;
+}
+
+div#profile-details {
+    flex: 100%;
+}
+
+div#profile-details ul {
+    float: left;
+    line-height: 300%;
+    list-style-type: none;
+    padding: 2%;
+}
+
+/* ul#details li {
+    border-bottom: 1px solid #000;
+} */
+
+ul#headings {
+    font-weight: bold;
+}
+
+div#sub-content a {
+    display: none;
+}
+
+p#button{
+    padding-top: 1.5%;
+    padding-left: 1%;
+}
+p#button a {
+    color: white;
+    background-color: maroon;
+    padding: 15px 10px;
+}
+
+div#blog-in-detail {
+    float: left;
+    width: 85%;
+    border-left: 1px solid #ccc;
+    display: flex;
+}
+
+div#right-block {
+    flex: 70%;
+    margin-left:1% ;
+}
+
+div#left-block {
+    flex: 30%;
+    margin-left:1% ;
+}
+
+div#left-block img{
+    width: 100%;
+    margin-top: 2%;
+}
+
+div#left-block svg {
+    margin: 15%;
+}
+
+ul#comments {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+}
+
+ul#comments li {
+    padding: 2% 2%;
+    border-bottom: 1px solid #ccc;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-boxes-4 {
+    flex: 25%;
+}
+
+#create-blog {
+    margin: 2% 0 0 10%;
+    padding-bottom: 1%;
+}
+
+#create-blog input[type=text] {
+    border: none;
+    border-bottom: 1px solid black;
+    margin: 1%;
+    font-size:x-large;
+    width: 40%;
+}
+
+#create-blog input[type=text]:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    margin: 1%;
+    font-size:x-large;
+}
+
+#create-blog input[type=button] {
+    background-color: transparent;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border-color: orange;
+}
+
+#create-blog input[type=button]:hover{
+    background-color: orange;
+}
+
+#create-blog input[type=file] {
+    display: none;
+}
+
+#create-blog input[type=file]:hover {
+    display: none;
+}
+
+.create-blog-picture {
+    border: 1px solid orange;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.create-blog-picture:hover {
+    background-color: orange;
+}
+
+.edit {
+    padding: 2%;
+    clear: left;
+}
+.edit i:hover {
+    color: maroon;
+}
+
+#details li input[type=text],
+#details li input[type=email],
+#details li input[type=number] {
+    padding: 0;
+    border: none;
+    border-bottom: 2px black solid;
+}
+
+#details li input[type=text]:focus,
+#details li input[type=email]:focus {
+    padding: 0;
+    border: none;
+    outline: none;
+    border-bottom: 2px orange solid;
+    cursor: text;
+    transition: border-bottom 0.5s ease;
+}
+
+#details li input[type=number]:focus {
+    padding: 0;
+    border: none;
+    outline: none;
+    border-bottom: 2px black solid;
+    cursor: text;
+}
+
+/* #details li input:read-only{
+    border-bottom: black 2px solid;
+} */
+
+#detail li input[type=submit] {
+    margin: 5%;
+}
+
+@media all and (min-width: 1000px) {
+
+    div#title-box {
+        float: left;
+        width: 74.8%;
+        margin: 25px 0 0 50px;
+    }
+
+    div#title-box img {
+        display: inline;
+        float: left;
+        width: 16.52%;
+    }
+
+    div#title-box h1 {
+        display: inline;
+        margin-top: 25px;
+    }
+
+    div#title-box h2 {
+        font-size: x-large;
+        display: block;
+    }
+
+    form#login-box, div#userinfo {
+        float: left;
+        margin: 25px 0 0 30px;
+    }
+
+    ul#primary-nav{
+        clear: left;
+        margin: 0 0 0 50px;
+    }
+
+    ul#primary-nav li{
+        float: left;
+    }
+
+    ul#primary-nav li a:hover {
+        background-color: orange;
+    }
+
+    div#content{
+        clear: left;
+        float: left;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        margin: 0 0 0 50px;
+        width: 74.5%;
+    }
+
+    div#sub-content {
+        width: 56.12%;
+        padding: 100px 100px 210px 100px;
+    }
+
+    div#sub-content a{
+        float: left;
+        display: inline;
+    }
+
+    ul#side-tabs {
+        float: left;
+        padding: 0;
+    }
+
+    /*ul#side-tabs li {*/
+    /*    padding: 10px 10px 15px 10px;*/
+    /*    background-color: maroon;*/
+    /*    text-align: center;*/
+    /*}*/
+
+    ul#side-tabs li {
+        float: none;
+    }
+
+    ul#side-tabs li a {
+        text-align: right;
+    }
+
+    ul#side-tabs li a:hover {
+        background-color: #ccc;
+    }
+
+    div#blogs {
+        float: left;
+        width: 85%;
+        border-left: 1px solid #ccc;
+    }
+
+    h2#section-heading {
+        margin-left: 30px;
+        flex: 30%;
+    }
+
+    .top-box{
+        display: flex;
+    }
+
+    .search-form {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .top-box form input {
+        margin: 2%;
+    }
+
+    .top-box form input[type=text] {
+        border: 1px solid #ccc; 
+    }
+
+    div.blog-post div.blog-picture img{
+        display: block;
+        float: left;
+        width: 170px;
+        margin-right: 10px;
+        height: 130px;
+        object-fit: cover;
+    }
+
+    div.blog-post h3.blog-title,
+    div.blog-post p.blog-description,
+    div.blog-post p.blog-byline {
+        display:block;
+        margin-left: 230px;
+    }
+
+    div.blog-post p.blog-byline a.blog-comments {
+        padding: 0px;
+        border: none;
+    }
+
+    div.blog-post p.blog-byline a.blog-byline-comma {
+        display: inline;
+    }
+
+    div#profile {
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    div#profile-picture {
+        flex:40%;
+    }
+
+    div#profile img {
+        float: right;
+        max-width: 75%;
+        max-height: 75%;
+    }
+    
+    div#profile-details {
+        flex: 60%;
+    }
+
+    div#side-bar {
+        float: left;
+        margin: 0 0 0 20px
+    }
+
+    div#side-bar a {
+        display: block;
+    }
+
+    div#side-bar a img.ad {
+        width:inherit;
+        height: 280px;
+        display: inline;
+    }
+    .edit {
+        float: right;
+        clear: none;
+    }
+
+}
+

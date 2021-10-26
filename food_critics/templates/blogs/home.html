@@ -1,0 +1,94 @@
+{% load static %}
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>VT Food Critics Space</title>
+    <link rel="stylesheet" type="text/css" href='{% static "css/responsive.css" %}'>
+</head>
+
+<body>
+    <div id="header">
+        <div id="title-box">
+            <img src='{% static "img/logo_maroonVTonWhite.svg" %}' alt="Logo">
+            <h1>VT Food Critics Space</h1>
+            <h2>Everything a foodie wants to know!</h2>
+        </div>
+        <!--title-box -->
+
+        {% if request.session.pid %}
+
+        <form id="login-box">
+            <p>Logged in as <b>{{request.session.pid}}</b> | <a href='{% url "food_critics:logout" %}'>Logout</a></p>
+        </form>
+
+        {% else %}
+
+        <form id="login-box" action="{% url 'food_critics:login' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="pid" placeholder="PID">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" name="submit" value="Log In">
+            <input type="button" name="signUp" value="Sign Up">
+        </form>
+
+        {% endif %}
+
+        <ul id="primary-nav">
+            <li><a href="{% url 'food_critics:home' %}">Home</a></li>
+            <li><a href="{% url 'food_critics:blog-list' %}">Blogs</a></li>
+            <li><a href="#">About</a></li>
+            {% if request.session.pid %}<li><a href="#">Profile</a></li>{% endif %}
+            <li><a href="#">Privacy</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <div id="sub-content">
+            <h3>Welcome to Virginia Tech Food Critics Space.</h3>
+            {% if request.session.role == None %}
+            <h4>Register to become a member of ours and enjoy the perks of all time updates on restaurants near you.
+            </h4>
+            {% endif %}
+            <ul>
+                {% if request.session.role == None %}
+                <li>
+                    <p>This is a webpage where a Hokie posts their blogs on the dishes or
+                        cuisines at a particular restaurant and interacts with their fellow Hokies.</p>
+                </li>
+                <li>
+                    <p>This website developed and maintained solely for social benefit.</p>
+                </li>
+                <li>
+                    <p>Anyone with VT email ID can login and post in this website. </p>
+                </li>
+                {% endif %}
+                <li>
+                    <p>All users are anonymous and are addressed by their username.</p>
+                </li>
+                <li>
+                    <p>If you have any issues regarding posts or comments please contact and report to us.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="side-bar">
+        <a href="#"><img class="ad" src='{% static "img/ad_snickers.jpeg" %}' alt="Ad 1"></a>
+        <a href="#"><img class="ad" src='{% static "img/ad_keloptic.jpeg" %}' alt="Ad 2"></a>
+    </div>
+    <div id="footer">
+        <div class="secondary_nav">
+            <p><a href="{% url 'food_critics:home' %}">Home</a> |
+                <a href="{% url 'food_critics:blog-list' %}">Blogs</a> |
+                <a href="#">About</a> |
+                {% if request.session.pid %}<a href="#">Profile</a> |{% endif %}
+                <a href="#">Privacy</a>
+            </p>
+            <p>&copy; 2021 VT Food Critics Space | Virginia Tech</p>
+        </div>
+    </div>
+</body>
+
+</html>

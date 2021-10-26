@@ -1,0 +1,37 @@
+{% extends "blogs/base.html" %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block page-title %}Blog Posts{% endblock %}
+
+{% block side-tabs %}
+<li><a href="#" class="selected">Popular</a></li>
+<li><a href="#">Blacksburg</a></li>
+<li><a href="#">NCR</a></li>
+{% endblock %}
+
+{% block blogs-content %}
+<div class="top-box">
+    <h2 id="section-heading">Blogs</h2>
+    <form class="search-form" action="{% url 'food_critics:search' %}" method="GET">
+        <input name="search-keyword" type="text" placeholder="Blacksburg, NCR, Mexican, Food, Family">
+        <input type="submit" value="Search">
+    </form>
+</div>
+{% for blog in food_blogs %}
+<div class="blog-post">
+    <div class="blog-points">{{ blog.points }}</div>
+    <div class="blog-picture"><img class="blog-picture" src="{% static 'img/' %}{{blog.image}}" alt="Blog's Picture">
+        <h3 class="blog-title"><a href="{% url 'food_critics:blog-in-detail' blog.id %}">{{blog.title}}</a></h3>
+        <p class="blog-description">{{blog.short_description}}</p>
+        <p class="blog-byline">
+            <a class="blog-comments" href="{% url 'food_critics:blog-in-detail' blog.id %}">{{blog.no_of_comments}} comments</a><a class="blog-byline-comma">,</a>
+            published {{blog.date_posted|naturaltime}} by
+            <a href="#">{{blog.user_posted}}</a>
+        </p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

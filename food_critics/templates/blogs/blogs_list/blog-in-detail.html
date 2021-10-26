@@ -1,0 +1,88 @@
+{% extends "blogs/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block page-title %}Blog Posts{% endblock %}
+
+{% block side-tabs %}
+<li><a href="#" class="selected">Popular</a></li>
+<li><a href="#">Blacksburg</a></li>
+<li><a href="#">NCR</a></li>
+{% endblock %}
+
+{% block blog-detail %}
+<div class="top-box">
+    <p id="button"><a href="{% url 'food_critics:blog-list' %}">Back to blogs</a></p>
+</div>
+
+<div id="blog-in-detail">
+    <div id="left-block">
+        <img src="{% static 'img/' %}{{blog.image}}" alt="Blog Picture">
+        {% if request.session.role == 'user' or request.session.role == 'admin' %}
+        <div class="flex-container">
+            <div class="flex-boxes-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                </svg>
+            </div>
+            <div class="flex-boxes-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                        d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z" />
+                </svg>
+            </div>
+            <div id="comment" class="flex-boxes-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                </svg>
+            </div>
+            <div class="flex-boxes-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                        d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+                </svg>
+            </div>
+        </div>
+        {% endif %}
+        <ul id="comments">
+            {% for comment in blog.comments %}
+            <li id="blog_id" hidden="true">{{comment.blog_id}}</li>
+            <li>
+                <span>{{comment.description}} by {{comment.user_commented}} {{comment.date_commented|naturaltime}} </span>
+                {% if request.session.role == 'admin' %}
+                <form action="{% url 'food_critics:delete-comment' %}" method="POST">
+                    {% csrf_token %}
+                    <input name="comment_id" type="number" value="{{ comment.id }}" readonly hidden="true">
+                    <button type="submit" onclick="return confirm('Are you sure?');"><i style="color: darkorange" class="fa fa-trash-o"></i></button>
+                </form>
+                {% endif %}
+                {% if request.session.role == 'user' and request.session.pid == comment.user_commented %}
+                <button id="edit-button" type="submit" onclick="showForm(event, '{{comment.blog_id}}')"><i style="color:darkorange" class="fa fa-edit"></i></button>
+                <form hidden id="edit-form" action="{% url 'food_critics:edit-comment' %}" method="POST">
+                        {% csrf_token %}
+                        <textarea name="edited_comment">{{comment.description}}</textarea>
+                        <input hidden="true" name="comment_id" type="number" value="{{comment.id}}">
+                        <input hidden="true" name="blog_id" type="number" value="{{comment.blog_id}}">
+                        <input type="submit"></form>
+                </form>
+                {% endif %}        
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="right-block">
+        <h2 class="blog-title">{{blog.title}}</h2>
+        <p class="blog-byline">
+            <a class="blog-comments">{{blog.no_of_comments}} comments</a><a class="blog-byline-comma">,</a>
+            published {{blog.date_posted|naturaltime}} by
+            <a href="#">{{blog.user_posted}}</a>
+        </p>
+        <p>{{blog.detail_description}}</p>
+    </div>
+</div>
+
+{% endblock %}
