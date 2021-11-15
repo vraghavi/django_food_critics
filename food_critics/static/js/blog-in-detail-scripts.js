@@ -11,10 +11,11 @@ function editComment(event,description){
     lielement.innerHTML = '<form method="post" action="/blogs/editcomment">{% csrf_token %}<textarea name="edited_comment">'+description+'</textarea><input hidden="true" name="blog_id" type="number" value="'+blog_id+'"><input type="submit"></form>';
 }
 
-function showForm(event,blogid){
-    document.getElementById('edit-form').removeAttribute('hidden')
-    document.getElementById('edit-button').setAttribute('hidden',true)
-    document.getElementById('edit-button').parentElement.firstElementChild.setAttribute('hidden',true)
+function showForm(event,blogid,commentid){
+    document.getElementById('form'+commentid).removeAttribute('hidden')
+    document.getElementById('button'+commentid).setAttribute('hidden',true)
+    console.log(document.getElementById('button'+commentid))
+    document.getElementById('button'+commentid).parentElement.firstElementChild.setAttribute('hidden',true)
 }
 
 function comment(){

@@ -18,20 +18,39 @@
     <form class="search-form" action="{% url 'food_critics:search' %}" method="GET">
         <input name="search-keyword" type="text" placeholder="Blacksburg, NCR, Mexican, Food, Family">
         <input type="submit" value="Search">
-    </form>
+    </form>&nbsp;&nbsp;
+    <form class="search-form" action="{% url 'food_critics:sort-by-date' %}"><button>Sort(date)</button></form>
+
 </div>
 {% for blog in food_blogs %}
 <div class="blog-post">
-    <div class="blog-points">{{ blog.points }}</div>
+    <div class="blog-points">
+        <p>{{ blog.points }}</p>
+        {% if request.session.role == 'admin' %}
+        <input class="edit-points" type="text" name="points" value="{{blog.points}}" readonly hidden>
+        <button class="edit-points" data-blog-id="{{blog.id}}" type="submit"
+            data-ajax-url="{% url 'food_critics:edit-points' %}">
+            <i style="color:darkorange" class="fa fa-edit"></i>
+        </button>
+        <button class="edit-points-save" hidden data-blog-id="{{blog.id}}" type="submit"
+            data-ajax-url="{% url 'food_critics:edit-points' %}">
+            <i style="color:darkorange" class="fa fa-save"></i>
+        </button>
+        {% endif %}
+    </div>
     <div class="blog-picture"><img class="blog-picture" src="{% static 'img/' %}{{blog.image}}" alt="Blog's Picture">
         <h3 class="blog-title"><a href="{% url 'food_critics:blog-in-detail' blog.id %}">{{blog.title}}</a></h3>
         <p class="blog-description">{{blog.short_description}}</p>
         <p class="blog-byline">
-            <a class="blog-comments" href="{% url 'food_critics:blog-in-detail' blog.id %}">{{blog.no_of_comments}} comments</a><a class="blog-byline-comma">,</a>
+            <a class="blog-comments" href="{% url 'food_critics:blog-in-detail' blog.id %}">{{blog.no_of_comments}}
+                comments</a><a class="blog-byline-comma">,</a>
             published {{blog.date_posted|naturaltime}} by
-            <a href="#">{{blog.user_posted}}</a>
+            <a onmouseover="getProfile(event)" href="#">{{blog.user_posted}}</a>
         </p>
     </div>
 </div>
 {% endfor %}
+{% if not food_blogs %}
+<p>No records to Display</p>
+{% endif %}
 {% endblock %}

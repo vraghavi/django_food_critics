@@ -11,14 +11,28 @@
 {% endblock %}
 
 {% block blog-detail %}
+
 <div class="top-box">
     <p id="button"><a href="{% url 'food_critics:blog-list' %}">Back to blogs</a></p>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}Info: {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}Info: {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}Warning: {% endif %}
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 </div>
 
 <div id="blog-in-detail">
     <div id="left-block">
-        <img src="{% static 'img/' %}{{blog.image}}" alt="Blog Picture">
-        {% if request.session.role == 'user' or request.session.role == 'admin' %}
+        <img src="{% static 'img/' %}{{blog.blog.image}}" alt="Blog Picture">
+        {% if request.session.role == 'user' %}
         <div class="flex-container">
             <div class="flex-boxes-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -52,36 +66,40 @@
             {% for comment in blog.comments %}
             <li id="blog_id" hidden="true">{{comment.blog_id}}</li>
             <li>
-                <span>{{comment.description}} by {{comment.user_commented}} {{comment.date_commented|naturaltime}} </span>
+                <span>{{comment.description}} by {{comment.user_commented}} {{comment.date_commented|naturaltime}}
+                </span>
                 {% if request.session.role == 'admin' %}
                 <form action="{% url 'food_critics:delete-comment' %}" method="POST">
                     {% csrf_token %}
                     <input name="comment_id" type="number" value="{{ comment.id }}" readonly hidden="true">
-                    <button type="submit" onclick="return confirm('Are you sure?');"><i style="color: darkorange" class="fa fa-trash-o"></i></button>
+                    <button type="submit" onclick="return confirm('Are you sure?');"><i style="color: darkorange"
+                            class="fa fa-trash-o"></i></button>
                 </form>
                 {% endif %}
                 {% if request.session.role == 'user' and request.session.pid == comment.user_commented %}
-                <button id="edit-button" type="submit" onclick="showForm(event, '{{comment.blog_id}}')"><i style="color:darkorange" class="fa fa-edit"></i></button>
-                <form hidden id="edit-form" action="{% url 'food_critics:edit-comment' %}" method="POST">
-                        {% csrf_token %}
-                        <textarea name="edited_comment">{{comment.description}}</textarea>
-                        <input hidden="true" name="comment_id" type="number" value="{{comment.id}}">
-                        <input hidden="true" name="blog_id" type="number" value="{{comment.blog_id}}">
-                        <input type="submit"></form>
+                <button id="button{{comment.id}}" type="submit" onclick="showForm(event, '{{comment.blog_id}}','{{comment.id}}')"><i
+                        style="color:darkorange" class="fa fa-edit"></i></button>
+                <form hidden id="form{{comment.id}}" action="{% url 'food_critics:edit-comment' %}" method="POST">
+                    {% csrf_token %}
+                    <textarea name="edited_comment">{{comment.description}}</textarea>
+                    <input hidden="true" name="comment_id" type="number" value="{{comment.id}}">
+                    <input hidden="true" name="blog_id" type="number" value="{{comment.blog_id}}">
+                    <input type="submit">
                 </form>
-                {% endif %}        
+                </form>
+                {% endif %}
             </li>
             {% endfor %}
         </ul>
     </div>
     <div id="right-block">
-        <h2 class="blog-title">{{blog.title}}</h2>
+        <h2 class="blog-title">{{blog.blog.title}}</h2>
         <p class="blog-byline">
-            <a class="blog-comments">{{blog.no_of_comments}} comments</a><a class="blog-byline-comma">,</a>
-            published {{blog.date_posted|naturaltime}} by
-            <a href="#">{{blog.user_posted}}</a>
+            <a class="blog-comments">{{blog.blog.no_of_comments}} comments</a><a class="blog-byline-comma">,</a>
+            published {{blog.blog.date_posted|naturaltime}} by
+            <a href="#">{{blog.blog.user_posted}}</a>
         </p>
-        <p>{{blog.detail_description}}</p>
+        <p>{{blog.blog.detail_description}}</p>
     </div>
 </div>
 

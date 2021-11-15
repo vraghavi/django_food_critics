@@ -1,0 +1,142 @@
+[
+    {
+        "model": "food_critics.comments",
+        "pk": 1,
+        "fields": {
+            "blog": 1,
+            "description": "No fostermarshall. Only brunch special is reasonable",
+            "user_commented": "sarahkolie",
+            "date_commented":"2021-07-01T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 2,
+        "fields": {
+            "blog": 1,
+            "description": "I don’t know why, but I find it expensive",
+            "user_commented": "fostermarshall",
+            "date_commented":"2021-07-01T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 3,
+        "fields": {
+            "blog": 1,
+            "description": "Wait what!! How did I miss this?!",
+            "user_commented": "pepperoni23",
+            "date_commented":"2021-07-01T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 4,
+        "fields": {
+            "blog": 1,
+            "description": "Their food is yummy" ,
+            "user_commented": "hoveronfood",
+            "date_commented":"2021-07-01T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 5,
+        "fields": {
+            "blog": 2,
+            "description": "Ok! Added one in bucket list",
+            "user_commented": "welcomefood",
+            "date_commented":"2021-09-01T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 6,
+        "fields": {
+            "blog": 2,
+            "description": "Yummm, I like their food",
+            "user_commented": "hellopie",
+            "date_commented":"2021-09-01T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 7,
+        "fields": {
+            "blog": 2,
+            "description": "How is their dessert section?",
+            "user_commented": "dessert87",
+            "date_commented":"2021-09-01T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 8,
+        "fields": {
+            "blog": 2,
+            "description": "Do they serve Indian?",
+            "user_commented": "gobi65",
+            "date_commented":"2021-09-01T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 9,
+        "fields": {
+            "blog": 3,
+            "description": "Next place visit",
+            "user_commented": "unicorn123",
+            "date_commented":"2021-05-11T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 10,
+        "fields": {
+            "blog": 3,
+            "description": "Wow!! Tag me in. I will join you",
+            "user_commented": "hahacheese",
+            "date_commented":"2021-05-11T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 11,
+        "fields": {
+            "blog": 3,
+            "description": "Expensive, but okay.",
+            "user_commented": "happyfoodie",
+            "date_commented":"2021-05-11T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 12,
+        "fields": {
+            "blog": 3,
+            "description": "Best place to go on a date",
+            "user_commented": "always_hangry",
+            "date_commented":"2021-05-11T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 13,
+        "fields": {
+            "blog": 4,
+            "description": "I love tacos and mexican food.",
+            "user_commented": "onlysoups",
+            "date_commented":"2021-10-23T13:20:3"
+        }
+    },
+    {
+        "model": "food_critics.comments",
+        "pk": 14,
+        "fields": {
+            "blog": 4,
+            "description": "Nothing can beat thai food.",
+            "user_commented": "yummthai",
+            "date_commented":"2021-10-23T13:20:3"
+        }
+    }
+]

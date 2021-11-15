@@ -313,6 +313,26 @@ ul#comments li {
     margin: 5%;
 }
 
+ul.messages {
+    font-weight: bold;
+    padding: 1em;
+    margin: 0;
+    list-style: none;
+}
+
+ul.messages li.success {
+    background-color: lightgreen;
+    padding: 1em;
+    margin: 0.25em;
+}
+
+ul.messages li.error {
+    background-color: lightpink;
+    padding: 1em;
+    margin: 0.25em;
+}
+
+
 @media all and (min-width: 1000px) {
 
     div#title-box {
@@ -489,6 +509,54 @@ ul#comments li {
     .edit {
         float: right;
         clear: none;
+    }
+
+    ul.messages {
+        font-weight: bold;
+        padding: 1em;
+        margin: 0;
+        list-style: none;
+    }
+    
+    ul.messages li.success {
+        background-color: lightgreen;
+        padding: 1em;
+        margin: 0.25em;
+    }
+
+    ul.messages li.info {
+        background-color: lightblue;
+        padding: 1em;
+        margin: 0.25em;
+    }
+
+    ul.messages li.warning {
+        background-color: lightpink;
+        padding: 1em;
+        margin: 0.25em;
+    }
+    
+    ul.messages li.error {
+        background-color: lightcoral;
+        padding: 1em;
+        margin: 0.25em;
+    }
+
+    input.edit-points{
+        width: 100%; 
+        border: none;
+        border-bottom: 1px solid black; 
+        padding: 10px;
+        font-size: medium;
+    }
+
+    input.edit-points:focus{
+        width: 100%; 
+        border: none;
+        border-bottom: 1px solid black; 
+        padding: 10px;
+        font-size: medium;
+        outline: none;
     }
 
 }

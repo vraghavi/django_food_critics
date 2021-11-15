@@ -1,0 +1,62 @@
+[
+    {
+        "model": "food_critics.user",
+        "pk": 1,
+        "fields": {
+            "points": 107,
+            "username": "Kolhan",
+            "password": "everythingisfood",
+            "role":"user"
+        }
+    },
+    {
+        "model": "food_critics.user",
+        "pk": 2,
+        "fields": {
+            "points": 129,
+            "username": "Jim@89",
+            "password": "jam@69",
+            "role":"user"
+        }
+    },
+    {
+        "model": "food_critics.user",
+        "pk": 3,
+        "fields": {
+            "points": 50,
+            "username": "ieatfood@arlington",
+            "password": "ballstonlocal",
+            "role":"user"
+        }
+    },
+    {
+        "model": "food_critics.user",
+        "pk": 4,
+        "fields": {
+            "points": 26,
+            "username": "mexicanfoodie@bb",
+            "password": "burrito",
+            "role":"user"
+        }
+    },
+    {
+        "model": "food_critics.user",
+        "pk": 5,
+        "fields": {
+            "points": 6,
+            "username": "sarahkolie",
+            "password": "hello",
+            "role":"user"
+        }
+    },
+    {
+        "model": "food_critics.user",
+        "pk": 6,
+        "fields": {
+            "points": 0,
+            "username": "admin",
+            "password": "admin123",
+            "role":"admin"
+        }
+    }
+]
