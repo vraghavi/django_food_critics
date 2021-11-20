@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-l(94=v--!c97y-%as5f52p3m6wjqktvp_g2a1*9y^a71e1cjji'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['cs5774foodcritics.herokuapp.com','127.0.0.1']
 
@@ -83,16 +83,16 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {'default':dj_database_url.config()}
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'food_critics_cs5774',
-        'USER': 'postgres',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+else :
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'food_critics_cs5774',
+            'USER': 'postgres',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
     }
-}
 
 # DATABASES = {
 #     'default': {
