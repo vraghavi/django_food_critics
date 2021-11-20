@@ -38,16 +38,6 @@ def home(request):
         return render(request, 'blogs/dashboard.html', {"actions":actions})
     else:
         return render(request, "blogs/home.html",)
-    # if(pid == regular_user['pid']) and (password == regular_user['password']):
-    #     request.session['pid'] = pid
-    #     request.session['role'] = 'user'
-    #     return redirect('food_critics:blog-list')
-    # elif(pid == admin_user['pid']) and (password == admin_user['password']):
-    #     request.session['pid'] = pid
-    #     request.session['role'] = 'admin'
-    #     return redirect('food_critics:blog-list')
-    # else:
-    #     return redirect('food_critics:home')
 
 #search view
 def search(request):
