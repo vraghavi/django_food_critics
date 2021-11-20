@@ -1,0 +1,24 @@
+{% extends "blogs/blogs_list/blog-base.html" %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block page-title %}Home{% endblock %}
+
+{% block blogs-content %}
+<div id="sub-content">
+    <h3>Dashboard</h3>
+    {% if request.session.role == None %}
+    <h4>Register to become a member of ours and enjoy the perks of all time updates on restaurants near you.
+    </h4>
+    {% endif %}
+    {% if request.session.username %}
+    <h5>Welcome {{request.session.username}} </h5>
+    {% endif %}
+    {% if request.session.username %} 
+{% include 'actions/action/feed.html' %}
+{% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "blogs/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+    <ul id="side-tabs">
+        <li><a href="#" class="selected">Profile</a></li>
+        <li><a href="#">My Blog</a></li>
+        <li><a href="#">Activity</a></li>
+    </ul>
+    {% if request.session.username == user.username or request.session.role == 'admin' %}
+    <div id="edit" class="edit"><i class="fa fa-edit fa-2x"></i></div>
+    <div hidden id="undo" class="edit"><i class="fa fa-undo fa-2x"></i></div>
+    {% endif %}
+    <div id="profile">
+        <div id="profile-picture"><img src="{% static 'img/gitninja.png' %}" alt="Profile Picture"></div>
+        <div id="profile-details">
+            <ul id="headings">
+                <li>Username</li>
+                {% if request.session.username == user.username %}
+                <li>Password*</li>
+                {% endif %}
+                <li>E-mail Address*</li>
+                <li>Mobile Number</li>
+                <li>Points</li>
+                <li>Role</li>
+            </ul>
+            <form id="editProfile" name='editProfile' method="POST" onsubmit="updateProfile(event)">
+                {% csrf_token %}
+                <ul id="details">
+                    <li>
+                        <!-- <label for="profile-username">Username</label> -->
+                        <input id="profile-username" readonly type="text" value="{{user.username}}" name="username">
+                    </li>
+                    {% if request.session.username == user.username %}
+                    <li>
+                        <!-- <label for="profile-username">Username</label> -->
+                        <input id="profile-password" readonly type="password" name="password">
+                    </li>
+                    {% endif %}
+                    <li>
+                        <!-- <label for="profile-email">E-mail</label> -->
+                        <input id="profile-email" readonly type="email" value="{{user.email}}" name="email">
+                    </li>
+                    <li>
+                        <!-- <label for="profile-mobileno">Mobile Number (optional)</label> -->
+                        <input id="profile-mobileno" readonly type="text" value="{{user.profile.mobileno}}" name="mobileno">
+                    </li>
+                    <li>
+                        <!-- <label for="profile-points">Points</label> -->
+                        <input id="profile-points" readonly type="number" value="{{user.profile.points}}" name="points">
+                    </li>
+                    <li>
+                        <!-- <label for="profile-points">Points</label> -->
+                        <input id="profile-role" readonly type="text" value="{{user.profile.role}}" name="role">
+                    </li>
+                    <li id="buttons" hidden="true">
+                        <input id="submit" name="submit" type="submit" value="Submit">
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

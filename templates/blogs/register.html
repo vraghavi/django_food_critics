@@ -1,0 +1,17 @@
+{% extends "blogs/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<div>
+    <form id="register" onsubmit="addUser(event)">
+        {% csrf_token %}
+        <input type="text" name="pid" placeholder="PID">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="vpassword" placeholder="Verify Password">
+        <input type="text" name="mobileno" placeholder="Mobile Number">
+        <input type="submit" name="submit" value="Sign Up">
+    </form>
+</div>
+{% endblock %}

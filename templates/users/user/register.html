@@ -1,0 +1,22 @@
+{% extends "blogs/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<div>
+    <form id="register-user" action="{% url 'users:register' %}" method = 'post'>
+        {% csrf_token %}
+        
+        <label for="register-email">VT Email ID*</label>
+        <input id="register-email" type="email" name="email" required>
+
+        <label for="register-username">Username*</label>
+        <input id="register-username" type="text" required name="username">
+
+        <label for="register-password">Password*</label>
+        <input id="register-password" type="password" required name="password">
+
+        <input type="submit" name="submit" value="Sign Up">
+    </form>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends "blogs/base.html" %}
+{% extends "blogs/blogs_list/blog-base.html" %}
 
 {% load static %}
 
@@ -45,7 +45,7 @@
             <a class="blog-comments" href="{% url 'food_critics:blog-in-detail' blog.id %}">{{blog.no_of_comments}}
                 comments</a><a class="blog-byline-comma">,</a>
             published {{blog.date_posted|naturaltime}} by
-            <a onmouseover="getProfile(event)" href="#">{{blog.user_posted}}</a>
+            <a onmouseover="getProfile(event)" href="{% url 'users:profile' blog.user_posted %}">{{blog.user_posted}}</a>
         </p>
     </div>
 </div>

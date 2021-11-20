@@ -1,4 +1,4 @@
-{% extends "blogs/base.html" %}
+{% extends "blogs/blogs_list/blog-base.html" %}
 {% load static %}
 {% load humanize %}
 
@@ -14,25 +14,12 @@
 
 <div class="top-box">
     <p id="button"><a href="{% url 'food_critics:blog-list' %}">Back to blogs</a></p>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}Info: {% endif %}
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}Info: {% endif %}
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}Warning: {% endif %}
-            {{ message }}
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
 </div>
 
 <div id="blog-in-detail">
     <div id="left-block">
         <img src="{% static 'img/' %}{{blog.blog.image}}" alt="Blog Picture">
-        {% if request.session.role == 'user' %}
+        {% if request.session.role == 'regular' %}
         <div class="flex-container">
             <div class="flex-boxes-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -66,7 +53,7 @@
             {% for comment in blog.comments %}
             <li id="blog_id" hidden="true">{{comment.blog_id}}</li>
             <li>
-                <span>{{comment.description}} by {{comment.user_commented}} {{comment.date_commented|naturaltime}}
+                <span>{{comment.description}} by <a href="{% url 'users:profile' comment.user_commented %}">{{comment.user_commented}}</a> {{comment.date_commented|naturaltime}}
                 </span>
                 {% if request.session.role == 'admin' %}
                 <form action="{% url 'food_critics:delete-comment' %}" method="POST">
@@ -76,7 +63,7 @@
                             class="fa fa-trash-o"></i></button>
                 </form>
                 {% endif %}
-                {% if request.session.role == 'user' and request.session.pid == comment.user_commented %}
+                {% if request.session.role == 'regular' and request.session.username == comment.user_commented %}
                 <button id="button{{comment.id}}" type="submit" onclick="showForm(event, '{{comment.blog_id}}','{{comment.id}}')"><i
                         style="color:darkorange" class="fa fa-edit"></i></button>
                 <form hidden id="form{{comment.id}}" action="{% url 'food_critics:edit-comment' %}" method="POST">
@@ -97,7 +84,7 @@
         <p class="blog-byline">
             <a class="blog-comments">{{blog.blog.no_of_comments}} comments</a><a class="blog-byline-comma">,</a>
             published {{blog.blog.date_posted|naturaltime}} by
-            <a href="#">{{blog.blog.user_posted}}</a>
+            <a href="{% url 'users:profile' blog.blog.user_posted %}">{{blog.blog.user_posted}}</a>
         </p>
         <p>{{blog.blog.detail_description}}</p>
     </div>
