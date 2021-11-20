@@ -1,8 +1,10 @@
+{% load humanize %}
+
 <h3>Recent Activity</h3>
 <ul>
 {% for action in actions %}
     <li>
-        <a>{{action.user.username}} {{action.verb}} &nbsp; <a href="{{action.target.get_absolute_url}}">{{action.target}}</a> &nbsp;  on {{action.created}}</a>
+        <a>{{action.user.username}} {{action.verb}} &nbsp; <a href="{{action.target.get_absolute_url}}">{{action.target}}</a> &nbsp; , {{action.created|naturaltime}}</a>
     </li>
 
 {% empty %}

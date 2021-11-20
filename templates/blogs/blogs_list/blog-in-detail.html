@@ -55,7 +55,7 @@
             <li>
                 <span>{{comment.description}} by <a href="{% url 'users:profile' comment.user_commented %}">{{comment.user_commented}}</a> {{comment.date_commented|naturaltime}}
                 </span>
-                {% if request.session.role == 'admin' %}
+                {% if request.session.role == 'admin' or request.session.username == comment.user_commented %}
                 <form action="{% url 'food_critics:delete-comment' %}" method="POST">
                     {% csrf_token %}
                     <input name="comment_id" type="number" value="{{ comment.id }}" readonly hidden="true">
@@ -63,7 +63,7 @@
                             class="fa fa-trash-o"></i></button>
                 </form>
                 {% endif %}
-                {% if request.session.role == 'regular' and request.session.username == comment.user_commented %}
+                {% if request.session.role == 'admin' or request.session.username == comment.user_commented %}
                 <button id="button{{comment.id}}" type="submit" onclick="showForm(event, '{{comment.blog_id}}','{{comment.id}}')"><i
                         style="color:darkorange" class="fa fa-edit"></i></button>
                 <form hidden id="form{{comment.id}}" action="{% url 'food_critics:edit-comment' %}" method="POST">

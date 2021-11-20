@@ -12,13 +12,13 @@ from django.http import JsonResponse
 
 #to show blogs in list
 def blog_list(request):
-    food_blogs = FoodBlog.objects.all().order_by('points')
+    food_blogs = FoodBlog.objects.all().order_by('-points')
     return render(request,
                   "blogs/blogs_list/list.html",
                   {"food_blogs": food_blogs})
 
 def sort_by_date(request):
-    food_blogs = FoodBlog.objects.all().order_by('date_posted')
+    food_blogs = FoodBlog.objects.all().order_by('-date_posted')
     return render(request,
                   "blogs/blogs_list/list.html",
                   {"food_blogs": food_blogs})
@@ -26,7 +26,7 @@ def sort_by_date(request):
 #to show detailed blogs
 def blog_in_detail(request, blog_id):
     blog = FoodBlog.objects.get(id=blog_id)
-    comments = blog.blog.all()
+    comments = blog.blog.all().order_by('-date_commented')
     blogDetaiView = BlogDetailView(blog=blog, comments=comments)
     return render(request,
                   "blogs/blogs_list/blog-in-detail.html",
@@ -34,8 +34,17 @@ def blog_in_detail(request, blog_id):
 #home
 def home(request):
     if request.session.get('username',False):
-        actions = Action.objects.all().order_by('-created')
-        return render(request, 'blogs/dashboard.html', {"actions":actions})
+            if request.session.get('role') == 'admin':
+                actions = Action.objects.all().order_by('-created')
+            else:
+                username = request.session.get('username')
+                user = User.objects.get(username = username)
+                userid = user.id
+                try:
+                    actions = Action.objects.filter(user=userid).order_by('-created')
+                except Action.DoesNotExist:
+                    actions = None
+            return render(request, 'blogs/dashboard.html', {"actions":actions})
     else:
         return render(request, "blogs/home.html",)
 
